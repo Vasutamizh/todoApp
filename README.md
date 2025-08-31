@@ -10,14 +10,8 @@ A full-stack **To-Do application** built with **React**, **Spring Boot**, and **
 - [Features](#features)  
 - [Tech Stack](#tech-stack)  
 - [Getting Started](#getting-started)  
-  - [Prerequisites](#prerequisites)  
-  - [Installation & Setup](#installation--setup)  
-- [Usage](#usage)  
-- [Environment Variables](#environment-variables)  
-- [Contributing](#contributing)  
-- [License](#license)  
-- [Contact](#contact)
-
+- [Prerequisites](#prerequisites)  
+- [Installation & Setup](#installation--setup)  
 ---
 
 ## Overview
@@ -54,7 +48,6 @@ This application provides a simple yet elegant interface to manage tasks. The fr
 Ensure you have the following installed on your system:
 
 - Git  
-- Node.js and npm/yarn  
 - Java Development Kit (JDK) 17+  
 - PostgreSQL (and access to create a database and user)
 
