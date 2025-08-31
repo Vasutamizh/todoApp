@@ -73,15 +73,15 @@ Configure PostgreSQL database—create a database (e.g., todo_db) and a user wit
 
 3. **Edit -> project/src/main/resources/application.properties**
 
-SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/todo_db
-SPRING_DATASOURCE_USERNAME=your_db_user
-SPRING_DATASOURCE_PASSWORD=your_password
+ - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/todo_db
+ - SPRING_DATASOURCE_USERNAME=your_db_user
+ - SPRING_DATASOURCE_PASSWORD=your_password
 
 (Striclty first time only)
-spring.jpa.hibernate.ddl-auto=create
+ - spring.jpa.hibernate.ddl-auto=create
 
 On the very next time change this line into  
-spring.jpa.hibernate.ddl-auto=update
+ - spring.jpa.hibernate.ddl-auto=update
 
 3. **Run the Application**
 
