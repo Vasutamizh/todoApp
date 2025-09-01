@@ -1,30 +1,27 @@
-# Stage 1: Build the JAR with Gradle
-FROM gradle:8.7-jdk17 AS builder
+# Use appropriate Java version
+FROM eclipse-temurin:17-jdk AS builder
+
 WORKDIR /app
 
 # Copy Gradle files
-COPY build.gradle settings.gradle ./
-COPY gradle gradle
-COPY gradlew ./
-RUN chmod +x gradlew
+COPY gradle/ gradle/
+COPY gradlew build.gradle settings.gradle ./
 
-# Download dependencies first (for caching)
-RUN ./gradlew dependencies --no-daemon || true
+# Make gradlew executable
+RUN chmod +x ./gradlew
 
-# Copy project source
-COPY . .
+# Copy source code
+COPY src/ src/
 
-# Build the Spring Boot app (skip tests for faster builds)
-RUN ./gradlew bootJar -x test --no-daemon
+# Set memory options and build
+ENV GRADLE_OPTS="-Xmx2g -XX:MaxMetaspaceSize=512m"
+RUN ./gradlew bootJar -x test --no-daemon --stacktrace
 
 # Stage 2: Run the app
-FROM eclipse-temurin:17-jdk-alpine
-WORKDIR /app
+FROM eclipse-temurin:17-jre
 
-# Copy the jar from the builder stage
+WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
 
 EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
-
+ENTRYPOINT ["java", "-jar", "app.jar"]
